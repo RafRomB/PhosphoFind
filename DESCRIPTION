@@ -1,0 +1,22 @@
+Package: PhosphoFind
+Title: Package for assigning phosphorylation sites from phosphoproteomics data.
+Version: 0.0.0.9000
+Authors@R: 
+    person("Rafael", "Romero-Becerra", , "rafrombec@gmail.com", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0003-3935-2647"))
+Description: This package implements several functions to assign phosphorylation sites to phosphopeptides obtain from phosphoproteomics experiments. The main function, `PhosphoFind`, receives a dataframe in which there should be a column specifying the peptide sequence, and additional columns with the position of the phosphosites in the peptide. The function then looks for alignments of the phosphopeptide to assign the phosphorylation site in the protein.
+License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
+    license
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.1
+Imports:
+  dplyr,
+  stringr,
+  janitor,
+  tidyr,
+  magrittr,
+  progress
+Depends: 
+    R (>= 2.10)
+LazyData: true
