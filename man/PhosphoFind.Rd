@@ -9,7 +9,7 @@ PhosphoFind(df, psp_db)
 \arguments{
 \item{df}{A phosphoproteomics dataframe with the columns previously especified}
 
-\item{psp_db}{Datafram with the PhosphoSitePlus phosphorylation data for the
+\item{psp_db}{Dataframe with the PhosphoSitePlus phosphorylation data for the
 organism}
 }
 \value{
@@ -28,8 +28,9 @@ the following columns:
 }
 \examples{
 data(PhosphoHeart)
+psp_db <- load_PSP_db(organism = "mouse")
 # Obtain list with phosphorylation sites and unidentified proteins:
-Phospholist <- PhosphoFind(PhosphoHeart)
+Phospholist <- PhosphoFind(df = PhosphoHeart, psp_db = psp_db)
 # Extract dataframe with the identified phosphorylation sites:
 Phosphosites <- Phospholist[[1]]
 # Extract names of proteins not identified:

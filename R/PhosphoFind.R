@@ -9,15 +9,16 @@
 #' "Phosphosite_2": position in the peptide of the second phosphosite (if any)
 #'
 #' @param df A phosphoproteomics dataframe with the columns previously especified
-#' @param psp_db Datafram with the PhosphoSitePlus phosphorylation data for the
+#' @param psp_db Dataframe with the PhosphoSitePlus phosphorylation data for the
 #' organism
 #' @return A list with the first element as a dataframe with the phosphoproteomics
 #' data with the identified phosphorylation sites. The second element is a vector
 #' with the protein Uniprot IDs that have not been identified.
 #' @examples
 #' data(PhosphoHeart)
+#' psp_db <- load_PSP_db(organism = "mouse")
 #' # Obtain list with phosphorylation sites and unidentified proteins:
-#' Phospholist <- PhosphoFind(PhosphoHeart)
+#' Phospholist <- PhosphoFind(df = PhosphoHeart, psp_db = psp_db)
 #' # Extract dataframe with the identified phosphorylation sites:
 #' Phosphosites <- Phospholist[[1]]
 #' # Extract names of proteins not identified:

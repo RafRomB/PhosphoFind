@@ -1,0 +1,97 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# PhosphoFind
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of PhosphoFind is to identify the phosphorylation site in a protein from the phosphosite of a peptide originated from phosphoproteomics experiments. 
+
+## Installation
+
+You can install the development version of PhosphoFind from [GitHub](https://github.com/RafRomB/PhosphoFind) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("RafRomB/PhosphoFind")
+```
+## Explanation of PhosphoFind function
+
+The main function in the package is `PhosphoFind`. The input of the funtion is a dataframe with, at least, the following columns (it is important that the names of the columns match the ones given here):
+
+- **protein** Uniprot (ACC ID) identifier of the protein. 
+- **Phospho_sequence**: aminoacid sequence of the peptide.
+- **Phosphosite_1**: position in the peptide of the first phosphosite.
+- **Phosphosite_2**: position in the peptide of the second phosphosite (if any).
+- **Pho**: Column indicating if the peptide in that row contains a phosphorylation (Y) or not.
+
+The other argument that the function receives, `psp_db`, is a dataframe with the [PhosphoSitePlus(R)](https://www.phosphosite.org/) phosphorylation data for the organism. This dataframe can be loaded with the function `load_PSP_db`. By default, this function loads the _Phosphorylation_site_dataset.gz_, Last modified: Fri May 17 09:42:46 EDT 2024, from [PhosphoSitePlus(R) v6.7.4](https://www.phosphosite.org/staticDownloads) for mouse. Alternatively, the path to a tab separated value file with a different PhosphoSitePlus database can be specified through the argument `file`.
+
+### Example
+
+```{r example}
+library(PhosphoFind)
+
+# Load default phosphorylation database
+psp_db <- load_PSP_db()
+
+# Choosing a different organism
+psp_db <- load_PSP_db(organism = "human")
+```
+
+### How it works
+
+The function `PhosphoFind` does the following:
+
+1. Filters the dataframe to keep only row with a phosphorylated peptide `(Pho == "Y")`.
+2. Looks for the protein in the dataframe in the PhosphoSitePlus database, based on the Uniprot ACC ID.
+3. If the protein is in the databe, it starts to look for the alignments based in the column `SITE_+/-7_AA` from the PhosphoSitePlus database (Figure 1) for the first phosphosites in the peptides.
+4. If the protein is not in the database, it saves the Uniprot ACC ID to return it later.
+5. Looks for aligments in the second phosphosites in the peptides.
+6. Once finished, the function returns a list with two elements. The first element is the dataframe with the original dataframe and the identified phosphorylation positions in the proteins. The secod element of the list is a vector with the names of the not identified proteins in the database.
+
+### Example
+
+```{r}
+library(PhosphoFind)
+data("PhosphoHeart")
+
+# Load 
+psp_db <- load_PSP_db(organism = "mouse")
+
+Phospholist <- PhosphoFind(df = PhosphoHeart, psp_db = psp_db)
+# Extract dataframe with the identified phosphorylation sites:
+Phosphosites <- Phospholist[[1]]
+# Extract names of proteins not identified:
+No_ID <- Phospholist[[2]]
+```
+
+
+What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
+
+```{r cars}
+summary(cars)
+```
+
+You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date. `devtools::build_readme()` is handy for this.
+
+You can also embed plots, for example:
+
+```{r pressure, echo = FALSE}
+plot(pressure)
+```
+
+In that case, don't forget to commit and push the resulting figure files, so they display on GitHub and CRAN.
