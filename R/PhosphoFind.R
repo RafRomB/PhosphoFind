@@ -226,5 +226,5 @@ PhosphoFind <- function(df, psp_db){
   df <- df %>% dplyr::select(ID, PHOS_RSD, PHOS_RSD_2)
   df <- dplyr::left_join(df_complete, df, by = "ID")
   df <- subset(df, select = -ID)
-  return(list("Phosphodf" = df, "IDs" = not_found_IDs))
+  return(list("Phosphodf" = df, "IDs" = na.omit(not_found_IDs)))
 }
