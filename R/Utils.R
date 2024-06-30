@@ -10,7 +10,7 @@ coacross <- function(...) {
 
 #' Find phosphosites positions.
 #'
-#' This function received a data frame with the phosphoproteomics data and the
+#' This function receives a data frame with the phosphoproteomics data and the
 #' sequence of the modified peptide in a column named 'peptide' to remove all
 #' the undesired modifications that are not a phosphorylation, and identify the
 #' position of the phosphorylation site in the phosphopeptide. The function is
@@ -19,8 +19,8 @@ coacross <- function(...) {
 #' peptide has a phosphorylation in it or not.
 #'
 #' @param df Dataframe with the phosphoproteomics data.
-#' @param ptm Vector with the name of the postranlational modifications in the peptides.
-#' different from phosphorylations that are going to be removed.
+#' @param ptm Vector with the name of the postranlational modifications in the peptides
+#' different from phosphorylations to be removed.
 #' @return A dataframe with the positions of the phosphosites in the peptide.
 #' @examples
 #' data(KupfCells)

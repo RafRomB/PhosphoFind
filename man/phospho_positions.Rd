@@ -12,14 +12,14 @@ phospho_positions(
 \arguments{
 \item{df}{Dataframe with the phosphoproteomics data.}
 
-\item{ptm}{Vector with the name of the postranlational modifications in the peptides.
-different from phosphorylations that are going to be removed.}
+\item{ptm}{Vector with the name of the postranlational modifications in the peptides
+different from phosphorylations to be removed.}
 }
 \value{
 A dataframe with the positions of the phosphosites in the peptide.
 }
 \description{
-This function received a data frame with the phosphoproteomics data and the
+This function receives a data frame with the phosphoproteomics data and the
 sequence of the modified peptide in a column named 'peptide' to remove all
 the undesired modifications that are not a phosphorylation, and identify the
 position of the phosphorylation site in the phosphopeptide. The function is
