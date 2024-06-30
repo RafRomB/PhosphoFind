@@ -16,9 +16,10 @@ knitr::opts_chunk$set(
 # PhosphoFind
 
 <!-- badges: start -->
+
 <!-- badges: end -->
 
-The goal of PhosphoFind is to identify the phosphorylation site in a protein from the phosphosite of a peptide originated from phosphoproteomics experiments. 
+The goal of PhosphoFind is to identify the phosphorylation site in a protein from the phosphosite of a peptide originated from phosphoproteomics experiments.
 
 ## Installation
 
@@ -28,17 +29,18 @@ You can install the development version of PhosphoFind from [GitHub](https://git
 # install.packages("devtools")
 devtools::install_github("RafRomB/PhosphoFind")
 ```
+
 ## Explanation of PhosphoFind function
 
 The main function in the package is `PhosphoFind`. The input of the funtion is a dataframe with, at least, the following columns (it is important that the names of the columns match the ones given here):
 
-- **protein** Uniprot (ACC ID) identifier of the protein. 
-- **Phospho_sequence**: aminoacid sequence of the peptide.
-- **Phosphosite_1**: position in the peptide of the first phosphosite.
-- **Phosphosite_2**: position in the peptide of the second phosphosite (if any).
-- **Pho**: Column indicating if the peptide in that row contains a phosphorylation (Y) or not.
+-   **protein** Uniprot (ACC ID) identifier of the protein.
+-   **Phospho_sequence**: aminoacid sequence of the peptide.
+-   **Phosphosite_1**: position in the peptide of the first phosphosite.
+-   **Phosphosite_2**: position in the peptide of the second phosphosite (if any).
+-   **Pho**: Column indicating if the peptide in that row contains a phosphorylation (Y) or not.
 
-The other argument that the function receives, `psp_db`, is a dataframe with the [PhosphoSitePlus(R)](https://www.phosphosite.org/) phosphorylation data for the organism. This dataframe can be loaded with the function `load_PSP_db`. By default, this function loads the _Phosphorylation_site_dataset.gz_, Last modified: Fri May 17 09:42:46 EDT 2024, from [PhosphoSitePlus(R) v6.7.4](https://www.phosphosite.org/staticDownloads) for mouse. Alternatively, the path to a tab separated value file with a different PhosphoSitePlus database can be specified through the argument `file`.
+The other argument that the function receives, `psp_db`, is a dataframe with the [PhosphoSitePlus(R)](https://www.phosphosite.org/) phosphorylation data for the organism. This dataframe can be loaded with the function `load_PSP_db`. By default, this function loads the *Phosphorylation_site_dataset.gz*, Last modified: Fri May 17 09:42:46 EDT 2024, from [PhosphoSitePlus(R) v6.7.4](https://www.phosphosite.org/staticDownloads) for mouse. Alternatively, the path to a tab separated value file with a different PhosphoSitePlus database can be specified through the argument `file`.
 
 ### Example
 
@@ -56,12 +58,14 @@ psp_db <- load_PSP_db(organism = "human")
 
 The function `PhosphoFind` does the following:
 
-1. Filters the dataframe to keep only row with a phosphorylated peptide `(Pho == "Y")`.
-2. Looks for the protein in the dataframe in the PhosphoSitePlus database, based on the Uniprot ACC ID.
-3. If the protein is in the databe, it starts to look for the alignments based in the column `SITE_+/-7_AA` from the PhosphoSitePlus database (Figure 1) for the first phosphosites in the peptides.
-4. If the protein is not in the database, it saves the Uniprot ACC ID to return it later.
-5. Looks for aligments in the second phosphosites in the peptides.
-6. Once finished, the function returns a list with two elements. The first element is the dataframe with the original dataframe and the identified phosphorylation positions in the proteins. The secod element of the list is a vector with the names of the not identified proteins in the database.
+1.  Filters the dataframe to keep only row with a phosphorylated peptide `(Pho == "Y")`.
+2.  Looks for the protein in the dataframe in the PhosphoSitePlus database, based on the Uniprot ACC ID.
+3.  If the protein is in the databe, it starts to look for the alignments based in the column `SITE_+/-7_AA` from the PhosphoSitePlus database (Figure 1) for the first phosphosites in the peptides.
+4.  If the protein is not in the database, it saves the Uniprot ACC ID to return it later.
+5.  Looks for aligments in the second phosphosites in the peptides.
+6.  Once finished, the function returns a list with two elements. The first element is the dataframe with the original dataframe and the identified phosphorylation positions in the proteins. The second element of the list is a vector with the names of the not identified proteins in the database.
+
+![Explanation of 'PhosphoFind' function. Depending on the position of the phosphosite in the phosphopeptide, 'PhosphoFind' will look for the alignment using different aminoacids. If the phosphosite is at the begining of the phosphopeptide (A), it will use the phosphosite and the following 4 aminoacids. If it is in the second position (B), it will use the previous aminoacid and the following 3 aminoacids to the phosphosite.If it is in the middle (C), it will use the previous 2 and following 2 aminoacids. If it is the second-to-last position (D), it will use the previous 3 and the following aminoacid. And if the phosphosite is at the end of the phosphopepide (E), it will use the previous 4 aminoacids.](man/figures/PhosphoSite.png)
 
 ### Example
 
@@ -78,7 +82,6 @@ Phosphosites <- Phospholist[[1]]
 # Extract names of proteins not identified:
 No_ID <- Phospholist[[2]]
 ```
-
 
 What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
 
