@@ -1,13 +1,13 @@
-#' Example TMT Phosphoproteomics dataset from Kupffer Cells
+#' Example TMT Phosphoproteomics dataset
 #'
-#' Example dataset of a TMT Phosphoproteomics experiment from Kupffer cells, to
+#' Example dataset of a TMT Phosphoproteomics experiment, to
 #' exemplify the use of the function 'phospho_positions'. The dataset includes
 #' a column with the phosphopeptide sequence and post-translational modifications
 #' tags, indluding phosphorylations and others, in the column `peptide`.
 #'
 #' @docType data
 #'
-#' @usage data(KupfCells)
+#' @usage data(phospho_ex)
 #'
 #' @format
 #' An object of class 'data.frame' with 5000 rows and 6 columns:
@@ -24,6 +24,7 @@
 #' @keywords dataset
 #'
 #' @examples
-#' data(KupfCells)
-#' KupfCells <- phospho_positions(KupfCells)
-"KupfCells"
+#' data(phospho_ex)
+#' phospho_ex <- phospho_positions(phospho_ex)
+"phospho_ex"
+
