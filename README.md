@@ -35,7 +35,9 @@ important that the names of the columns match the ones given here):
   phosphorylation (Y) or not.
 
 The other argument that the function receives, `psp_db`, is a dataframe
-with the [PhosphoSitePlus(R)](https://www.phosphosite.org/)
+with the [PhosphoSitePlus(R)](https://www.phosphosite.org/) [(Hornbeck
+et
+al. 2014)](https://academic.oup.com/nar/article/43/D1/D512/2439467?login=false)
 phosphorylation data for the organism. This dataframe can be loaded with
 the function `load_PSP_db`. By default, this function loads the
 *Phosphorylation_site_dataset.gz*, Last modified: Fri May 17 09:42:46
@@ -139,3 +141,10 @@ position in the phosphopeptide of that aminoacid.
 
 In case that the postranslational modifications are indicated in a
 different way, another approach should be used to obtain the positions.
+
+# References
+
+Hornbeck PV, Zhang B, Murray B, Kornhauser JM, Latham V, Skrzypek E
+[PhosphoSitePlus, 2014: mutations, PTMs and
+recalibrations](https://academic.oup.com/nar/article/43/D1/D512/2439467?login=false).
+*Nucleic Acids Res*. 2015 43:D512-20. PMID: 25514926.

@@ -40,7 +40,7 @@ The main function in the package is `PhosphoFind`. The input of the funtion is a
 -   **Phosphosite_2**: position in the peptide of the second phosphosite (if any).
 -   **Pho**: Column indicating if the peptide in that row contains a phosphorylation (Y) or not.
 
-The other argument that the function receives, `psp_db`, is a dataframe with the [PhosphoSitePlus(R)](https://www.phosphosite.org/) phosphorylation data for the organism. This dataframe can be loaded with the function `load_PSP_db`. By default, this function loads the *Phosphorylation_site_dataset.gz*, Last modified: Fri May 17 09:42:46 EDT 2024, from [PhosphoSitePlus(R) v6.7.4](https://www.phosphosite.org/staticDownloads) for mouse. Alternatively, the path to a tab separated value file with a different PhosphoSitePlus database can be specified through the argument `file`.
+The other argument that the function receives, `psp_db`, is a dataframe with the [PhosphoSitePlus(R)](https://www.phosphosite.org/) [(Hornbeck et al. 2014)](https://academic.oup.com/nar/article/43/D1/D512/2439467?login=false) phosphorylation data for the organism. This dataframe can be loaded with the function `load_PSP_db`. By default, this function loads the *Phosphorylation_site_dataset.gz*, Last modified: Fri May 17 09:42:46 EDT 2024, from [PhosphoSitePlus(R) v6.7.4](https://www.phosphosite.org/staticDownloads) for mouse. Alternatively, the path to a tab separated value file with a different PhosphoSitePlus database can be specified through the argument `file`.
 
 ### Example
 
@@ -100,3 +100,6 @@ Where `(Phospho)` would indicate the postranslational modification (in this case
 
 In case that the postranslational modifications are indicated in a different way, another approach should be used to obtain the positions.
 
+# References
+
+Hornbeck PV, Zhang B, Murray B, Kornhauser JM, Latham V, Skrzypek E [PhosphoSitePlus, 2014: mutations, PTMs and recalibrations](https://academic.oup.com/nar/article/43/D1/D512/2439467?login=false). _Nucleic Acids Res_. 2015 43:D512-20. PMID: 25514926.
