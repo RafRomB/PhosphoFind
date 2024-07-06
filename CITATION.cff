@@ -1,0 +1,28 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: PhosphoFind
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Rafael
+    family-names: Romero-Becerra
+    email: rafrombec@gmail.com
+    orcid: 'https://orcid.org/0000-0003-3935-2647'
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.12670925
+repository-code: 'https://github.com/RafRomB/PhosphoFind'
+abstract: >-
+  PhosphoFind provides functions to identify phosphorylation
+  positions (aminoacid number in proteins) in
+  phosphoproteomics experiments.
+keywords:
+  - Phosphoproteomics
+  - Phosphorylation
+license: CC-BY-NC-SA-3.0
+version: v1.0.0
+date-released: '2024-07-06'
